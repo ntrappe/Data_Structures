@@ -37,6 +37,49 @@ int get_height(TreeNode* root) {
 }
 
 /**
+ * Count all the nodes at a given level.
+ * For example: level 1 = the root node so we should return 1
+ *              if root has 2 kids, level 2 should return 2
+ **/
+int count_nodes_atlevel(TreeNode* root, int level) {
+    if(!root)
+        return 0;
+    if(level == 1)
+        return 1;
+    else {
+        return count_nodes_atlevel(root->left, level - 1) + count_nodes_atlevel(root->right, level - 1);
+    }
+}
+
+// prints out the nodes for a given level
+void print_level(TreeNode* root, int level) {
+    if(!root)
+        return;
+    if(level == 1)
+        cout << root->val << " ";
+    else {
+        print_level(root->left, level - 1);
+        print_level(root->right, level - 1);
+    }
+}
+
+/** 
+ * Prints out the nodes in a tree for each level at a time
+ * For example: level 1 = will just print out root node
+ * Note: number of levels in a tree corresponds to the height
+ **/
+void level_order(TreeNode* root) {
+    int level = get_height(root);
+    cout << "height of " << level << endl;
+
+    for(int i = 1; i <= level; i++) {
+        print_level(root, i);
+        cout << endl;
+    }
+    cout << endl;
+}
+
+/**
  * In order traversal: left, root, right
  **/
 void in_order(TreeNode* root) {
@@ -69,12 +112,26 @@ void pre_order(TreeNode* root) {
     pre_order(root->right);
 }
 
+
 int BFS(TreeNode* root) {
-    return 0;
+    if(!root)
+        return EXIT_FAILURE;
+    level_order(root);
 }
 
-int DFS(TreeNode* root) {
-    return 0;
+/**
+ * Depth First Search
+ * pre-order, post-order, in-order
+ **/
+int DFS(TreeNode* root, string type) {
+    if(type == "pre_order" || type == "pre-order")
+        pre_order(root);
+    else if(type == "post_order" || type == "post-order")
+        post_order(root);
+    else
+        in_order(root);
+    
+    return EXIT_SUCCESS;
 }
 
 // Insert should be O(log n) unless leaning tree which is O(n)
@@ -267,49 +324,6 @@ int count_all_leaves(TreeNode* root) {
 
 }
 
-/**
- * Count all the nodes at a given level.
- * For example: level 1 = the root node so we should return 1
- *              if root has 2 kids, level 2 should return 2
- **/
-int count_nodes_atlevel(TreeNode* root, int level) {
-    if(!root)
-        return 0;
-    if(level == 1)
-        return 1;
-    else {
-        return count_nodes_atlevel(root->left, level - 1) + count_nodes_atlevel(root->right, level - 1);
-    }
-}
-
-// prints out the nodes for a given level
-void print_level(TreeNode* root, int level) {
-    if(!root)
-        return;
-    if(level == 1)
-        cout << root->val << " ";
-    else {
-        print_level(root->left, level - 1);
-        print_level(root->right, level - 1);
-    }
-}
-
-/** 
- * Prints out the nodes in a tree for each level at a time
- * For example: level 1 = will just print out root node
- * Note: number of levels in a tree corresponds to the height
- **/
-void level_order(TreeNode* root) {
-    int level = get_height(root);
-    cout << "height of " << level << endl;
-
-    for(int i = 1; i <= level; i++) {
-        print_level(root, i);
-        cout << endl;
-    }
-    cout << endl;
-}
-
 
 int main() {
     // TEST 1: empty vect
@@ -358,12 +372,8 @@ int main() {
     //cout << "# leaves: " << count_all_leaves(start) << endl;
     //cout << "# nodes: " << count_nodes_atlevel(start, 5) << endl;
 
-    in_order(start);
-    cout << endl;
-    post_order(start);
-    cout << endl;
-    pre_order(start);
-    cout << endl;
+    BFS(start);
+
 
     return EXIT_SUCCESS;
 }
