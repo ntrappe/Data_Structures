@@ -21,6 +21,8 @@ Storing and accessing sequential data, temporarily storing, as an IO buffer
 (when reading from a file), lookup table, and hack for multiple return values.
 
 #### Notes: 
+Can implement a dynamic arrays from static ones by continuously allocating double the space
+once the array is full.
 
 #### Time Complexity:
 | Operation   | Average     | Worst       | 
