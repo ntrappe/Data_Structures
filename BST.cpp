@@ -212,6 +212,23 @@ TreeNode* remove(TreeNode* root, int val) {
     return root;
 }
 
+/**
+ * O(n) to traverse to ends of all subtrees to find leaves
+ **/
+int count_all_leaves(TreeNode* root) {
+    if(!root)
+        return 0;
+    else if(!root->left && !root->right)
+        return 1;
+    else {
+        return count_all_leaves(root->left) + count_all_leaves(root->right);
+    }
+
+}
+
+void count_nodes_atlevel(TreeNode* root, int level) {
+
+}
 
 
 // prints out the nodes for a given level
@@ -280,11 +297,11 @@ int main() {
     int woop[] = {5, 3, 10, 2, 1, 8, 13, 7, 15, 20};
     vector<int> vect4(woop, woop + sizeof(woop) / sizeof(woop[0]));
     start = insert(vect4);
-    TreeNode* start2 = remove(start, 10);
-    level_order(start2);
+    //TreeNode* start2 = remove(start, 10);
+    //level_order(start2);
 
-    //delete(start);
-    //delete(start2);
+
+    cout << "# leaves: " << count_all_leaves(start) << endl;
 
     return EXIT_SUCCESS;
 }
