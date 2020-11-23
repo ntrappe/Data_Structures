@@ -226,14 +226,20 @@ int count_all_leaves(TreeNode* root) {
 
 }
 
-void count_nodes_atlevel(TreeNode* root, int level) {
-
+int count_nodes_atlevel(TreeNode* root, int level) {
+    if(!root)
+        return 0;
+    if(level == 1)
+        return 1;
+    else {
+        return count_nodes_atlevel(root->left, level - 1) + count_nodes_atlevel(root->right, level - 1);
+    }
 }
 
 
 // prints out the nodes for a given level
 void print_level(TreeNode* root, int level) {
-    if(root == nullptr)
+    if(!root)
         return;
     if(level == 1)
         cout << root->val << " ";
@@ -302,6 +308,7 @@ int main() {
 
 
     cout << "# leaves: " << count_all_leaves(start) << endl;
+    cout << "# nodes: " << count_nodes_atlevel(start, 5) << endl;
 
     return EXIT_SUCCESS;
 }
