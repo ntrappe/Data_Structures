@@ -10,7 +10,7 @@ Generally use unique values (don't want duplicates).
 #### Time Complexity:
 | Operation   | Average     | Worst       | 
 | ----------- | ----------- | ----------- |
-| Insert      | O(log n)    | O(n)        | like if we have a linked-list
+| Insert      | O(log n)    | O(n)        |      like if we have a linked-list
 | Remove      | O(log n)    | O(n)        |
 | Search      | O(log n)    | O(n)        |
 
