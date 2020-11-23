@@ -97,13 +97,9 @@ Provides a mapping from keys to values via hashing (called a "key-value" pair wh
 Keys are immutable.
 
 #### Collision Resolution Methods:
-1. Open Addressing:
+1. Open Addressing: Find another place within hash table by using an offset from original hash.
 
-Find another place within hash table by using an offset from original hash.
-
-2. Separate Chaining:
-
-Use a separate data structure like a list to hold all different values (key-value pairs).
+2. Separate Chaining: Use a separate data structure like a list to hold all different values (key-value pairs).
 
 
 #### Time Complexity:
