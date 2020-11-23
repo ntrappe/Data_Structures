@@ -1,5 +1,5 @@
-# Data_Structures
-Prep for coding interviews
+# Data Structures
+Prep for coding interviews.
 
 ## Binary Search Tree
 #### Useful for: 
@@ -75,7 +75,8 @@ manager for first come, first serve, or BFS graph traversal.
 
 #### Notes: 
 It's a linear data structure with has 2 main operations: dequeue ("polling") and enqueue ("offering"). 
-You remove elements from the front and add elements to the back. 
+You remove elements from the front and add elements to the back. Often done via singly-linked list since
+arrays (static) might not be big enough.
 
 #### Time Complexity:
 | Operation   | Average     | Worst       | 
@@ -89,18 +90,27 @@ You remove elements from the front and add elements to the back.
 
 ## Hash Map
 #### Useful for: 
-Useful for undo functions, checking for matching braces, other syntax (or TMs), supports recursion 
-behind the scenes, and is used in DFS on a graph.
+Helpful for tracking item frequencies, if large files have equal contents (without opening files), 
 
 #### Notes: 
-Has 2 primary operations: push and pop. Last in, first out: what you most recently pushed will be
-what comes out when you pop.
+Provides a mapping from keys to values via hashing (called a "key-value" pair where keys are unique). 
+Keys are immutable.
+
+#### Collision Resolution Methods:
+1. Open Addressing
+Find another place within hash table by using an offset from original hash.
+2. Separate Chaining
+Use a separate data structure like a list to hold all different values (key-value pairs).
+
 
 #### Time Complexity:
 | Operation   | Average     | Worst       | 
 | ----------- | ----------- | ----------- |
-| Push        | O(1)        | O(1)        | 
-| Pop         | O(1)        | O(1)        | 
-| Peek/Top    | O(1)        | O(1)        | 
-| Search      | O(n)        | O(n)        | scan all elements if not on top
+| Lookup      | O(1)        | O(n)        | lots of hash collisions
+| Remove      | O(1)        | O(n)        | 
+| Insert      | O(1)        | O(n)        | 
 
+
+#### BFS Graph:
+Start at a node, add its neighbors to queue, and visit their neighbors (add to queue). 
+We know if all nodes have been visited by marking them as visited (bool).
