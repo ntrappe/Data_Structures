@@ -46,6 +46,24 @@ Doubly-linked takes up double the space since we have 2x the pointers but easier
 | ----------- | ----------- | ----------- |
 | Insert (T/H)| O(1)        | O(1)        | for inserting at the head or tail
 | Insert      | O(n)        | O(n)        | for items in the middle, need to traverse
-| Remove      | O(n)        | O(n)       | 
+| Remove      | O(n)        | O(n)        | 
 | Search      | O(n)        | O(n)        |
+
+
+## Stacks
+#### Useful for: 
+Useful for undo functions, checking for matching braces, other syntax (or TMs), supports recursion 
+behind the scenes, and is used in DFS on a graph.
+
+#### Notes: 
+Has 2 primary operations: push and pop. Last in, first out: what you most recently pushed will be
+what comes out when you pop.
+
+#### Time Complexity:
+| Operation   | Average     | Worst       | 
+| ----------- | ----------- | ----------- |
+| Push        | O(1)        | O(1)        | 
+| Pop         | O(1)        | O(1)        | 
+| Peek/Top    | O(1)        | O(1)        | 
+| Search      | O(n)        | O(n)        | scan all elements if not on top
 
