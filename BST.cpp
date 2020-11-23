@@ -80,6 +80,40 @@ TreeNode* insert(vector<int>& nums) {
     return root;
 }
 
+/**
+ * Gives you a pointer to the parent node of the value we want
+ */
+TreeNode* get_prev(TreeNode* root, int val) {
+    cout << "parent is " << root->val << endl;
+    if((root->left && root->left->val == val) || (root->right && root->right->val == val)) {
+        cout << "child has " << val << endl;
+        return root;
+    // either no children left to search or root matches our val 
+    // so cannot return anything
+    } else if((!root->left && !root->right) || root->val == val) {
+        return nullptr;
+    // keep traversing
+    } else {
+        if(val < root->val)
+            return get_prev(root->left, val);
+        return get_prev(root->right, val);
+    }
+    
+    
+}
+
+/**
+ * Worst case O(log n)
+ **/
+TreeNode* remove(TreeNode* root, int val) {
+    TreeNode* ref;          // will point to node to remove (for freeing memory)
+    //auto it = root.begin();
+
+    return nullptr;
+}
+
+
+
 // prints out the nodes for a given level
 void print_level(TreeNode* root, int level) {
     if(root == nullptr)
@@ -117,8 +151,9 @@ int main() {
     /**         5
      *        4   6
      *      3       7
-     *                11
-     *                  20
+     *                8
+     *                  11
+     *                    20
      **/
     int leaning[] = {5, 4, 6, 3, 7, 8, 11, 20};
     vector<int> vect3(leaning, leaning + sizeof(leaning) / sizeof(leaning[0]));
@@ -127,6 +162,12 @@ int main() {
     //cout << insert(vect2) << endl;
     TreeNode * start = insert(vect3);
     level_order(start);
+    TreeNode * prev = get_prev(start, 20);
+    if(prev)
+        cout << "prev " << prev->val << endl;
+    else
+        cout << "didn't find prev\n";
+    
 
     return EXIT_SUCCESS;
 }
