@@ -67,3 +67,40 @@ what comes out when you pop.
 | Peek/Top    | O(1)        | O(1)        | 
 | Search      | O(n)        | O(n)        | scan all elements if not on top
 
+
+## Queues
+#### Useful for: 
+Used to model a real-world queue like standing in line, a sequence of elements, web server 
+manager for first come, first serve, or BFS graph traversal.
+
+#### Notes: 
+It's a linear data structure with has 2 main operations: dequeue ("polling") and enqueue ("offering"). 
+You remove elements from the front and add elements to the back. 
+
+#### Time Complexity:
+| Operation   | Average     | Worst       | 
+| ----------- | ----------- | ----------- |
+| Enqueue     | O(1)        | O(1)        | 
+| Dequeue     | O(1)        | O(1)        | 
+| Peek/Top    | O(1)        | O(1)        | 
+| Contains    | O(n)        | O(n)        | might need to scan thru all elements
+| Remove      | O(n)        | O(n)        |
+
+
+## Hash Map
+#### Useful for: 
+Useful for undo functions, checking for matching braces, other syntax (or TMs), supports recursion 
+behind the scenes, and is used in DFS on a graph.
+
+#### Notes: 
+Has 2 primary operations: push and pop. Last in, first out: what you most recently pushed will be
+what comes out when you pop.
+
+#### Time Complexity:
+| Operation   | Average     | Worst       | 
+| ----------- | ----------- | ----------- |
+| Push        | O(1)        | O(1)        | 
+| Pop         | O(1)        | O(1)        | 
+| Peek/Top    | O(1)        | O(1)        | 
+| Search      | O(n)        | O(n)        | scan all elements if not on top
+
