@@ -36,6 +36,47 @@ int get_height(TreeNode* root) {
     }
 }
 
+/**
+ * In order traversal: left, root, right
+ **/
+void in_order(TreeNode* root) {
+    if(!root)
+        return;
+    in_order(root->left);
+    cout << root->val << " ";
+    in_order(root->right);
+}
+
+/**
+ * Post order traversal: left, right, root
+ **/
+void post_order(TreeNode* root) {
+    if(!root)
+        return;
+    post_order(root->left);
+    post_order(root->right);
+    cout << root->val << " ";
+}
+
+/**
+ * Pre order traversal: root, left, right
+ **/
+void pre_order(TreeNode* root) {
+    if(!root)
+        return;
+    cout << root->val << " ";
+    pre_order(root->left);
+    pre_order(root->right);
+}
+
+int BFS(TreeNode* root) {
+    return 0;
+}
+
+int DFS(TreeNode* root) {
+    return 0;
+}
+
 // Insert should be O(log n) unless leaning tree which is O(n)
 void recurse_insert(TreeNode* root, int val) {
     // already have this in tree (no duplicates)
@@ -226,6 +267,11 @@ int count_all_leaves(TreeNode* root) {
 
 }
 
+/**
+ * Count all the nodes at a given level.
+ * For example: level 1 = the root node so we should return 1
+ *              if root has 2 kids, level 2 should return 2
+ **/
 int count_nodes_atlevel(TreeNode* root, int level) {
     if(!root)
         return 0;
@@ -235,7 +281,6 @@ int count_nodes_atlevel(TreeNode* root, int level) {
         return count_nodes_atlevel(root->left, level - 1) + count_nodes_atlevel(root->right, level - 1);
     }
 }
-
 
 // prints out the nodes for a given level
 void print_level(TreeNode* root, int level) {
@@ -249,7 +294,11 @@ void print_level(TreeNode* root, int level) {
     }
 }
 
-// prints out the nodes in a tree for each level at a time
+/** 
+ * Prints out the nodes in a tree for each level at a time
+ * For example: level 1 = will just print out root node
+ * Note: number of levels in a tree corresponds to the height
+ **/
 void level_order(TreeNode* root) {
     int level = get_height(root);
     cout << "height of " << level << endl;
@@ -260,6 +309,7 @@ void level_order(TreeNode* root) {
     }
     cout << endl;
 }
+
 
 int main() {
     // TEST 1: empty vect
@@ -305,10 +355,15 @@ int main() {
     start = insert(vect4);
     //TreeNode* start2 = remove(start, 10);
     //level_order(start2);
+    //cout << "# leaves: " << count_all_leaves(start) << endl;
+    //cout << "# nodes: " << count_nodes_atlevel(start, 5) << endl;
 
-
-    cout << "# leaves: " << count_all_leaves(start) << endl;
-    cout << "# nodes: " << count_nodes_atlevel(start, 5) << endl;
+    in_order(start);
+    cout << endl;
+    post_order(start);
+    cout << endl;
+    pre_order(start);
+    cout << endl;
 
     return EXIT_SUCCESS;
 }
