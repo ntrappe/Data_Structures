@@ -16,8 +16,8 @@ Generally use unique values (don't want duplicates).
 | Insert      | O(log n)    | O(n)        |      like if we have a linked-list
 | Remove      | O(log n)    | O(n)        |
 | Search      | O(log n)    | O(n)        |
-#
 
+-
 ### ARRAYS
 #### Useful for: 
 Storing and accessing sequential data, temporarily storing, as an IO buffer
