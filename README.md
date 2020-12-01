@@ -12,9 +12,9 @@ Data Structures, Sorting Algorithms, Runtimes, Interview Questions and overall p
 | O(n)        | O(n^2)      | O(n^2)      | O(1)      | 
 
 ---
-# Data Structures
+## Data Structures
 
-## Binary Search Tree
+### Binary Search Tree
 #### Useful for: 
 Sorting data and everything, including rebalancing, can be done in O(log n).
 #### Notes: 
@@ -26,7 +26,7 @@ Generally use unique values (don't want duplicates).
 | Insert      | O(log n)    | O(n)        |      like if we have a linked-list
 | Remove      | O(log n)    | O(n)        |
 | Search      | O(log n)    | O(n)        |
-
+#
 
 ## Arrays
 #### Useful for: 
@@ -47,7 +47,7 @@ once the array is full.
 | Search      | O(n)        | O(n)        |
 
 
-## Linked-Lists
+### Linked-Lists
 #### Useful for: 
 Useful in lists, queues, and stacks. Often used for circular (round robin) or adjacency lists.
 
@@ -65,7 +65,7 @@ Doubly-linked takes up double the space since we have 2x the pointers but easier
 | Search      | O(n)        | O(n)        |
 
 
-## Stacks
+### Stacks
 #### Useful for: 
 Useful for undo functions, checking for matching braces, other syntax (or TMs), supports recursion 
 behind the scenes, and is used in DFS on a graph.
@@ -83,7 +83,7 @@ what comes out when you pop.
 | Search      | O(n)        | O(n)        | scan all elements if not on top
 
 
-## Queues
+### Queues
 #### Useful for: 
 Used to model a real-world queue like standing in line, a sequence of elements, web server 
 manager for first come, first serve, or BFS graph traversal.
@@ -103,7 +103,7 @@ arrays (static) might not be big enough.
 | Remove      | O(n)        | O(n)        |
 
 
-## Hash Map
+### Hash Map
 #### Useful for: 
 Helpful for tracking item frequencies, if large files have equal contents (without opening files), 
 
@@ -124,7 +124,8 @@ Keys are immutable.
 | Remove      | O(1)        | O(n)        | 
 | Insert      | O(1)        | O(n)        | 
 
-
+---
+## Other Notes
 #### BFS Graph:
 Start at a node, add its neighbors to queue, and visit their neighbors (add to queue). 
 We know if all nodes have been visited by marking them as visited (bool).
