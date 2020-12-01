@@ -1,6 +1,7 @@
-# Intro: Interview Prep
+# Interview Prep
 Data Structures, Sorting Algorithms, Runtimes, Interview Questions and overall prep for coding interviews.
 
+---
 # Sorting Algorithms
 ## Insertion Sort
 #### Time Complexity:
