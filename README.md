@@ -18,7 +18,7 @@ Generally use unique values (don't want duplicates).
 | Search      | O(log n)    | O(n)        |
 #
 
-### Arrays
+### ARRAYS
 #### Useful for: 
 Storing and accessing sequential data, temporarily storing, as an IO buffer
 (when reading from a file), lookup table, and hack for multiple return values.
@@ -37,7 +37,7 @@ once the array is full.
 | Search      | O(n)        | O(n)        |
 
 
-### Linked-Lists
+### LINKED-LISTS
 #### Useful for: 
 Useful in lists, queues, and stacks. Often used for circular (round robin) or adjacency lists.
 
@@ -55,7 +55,7 @@ Doubly-linked takes up double the space since we have 2x the pointers but easier
 | Search      | O(n)        | O(n)        |
 
 
-### Stacks
+### STACKS
 #### Useful for: 
 Useful for undo functions, checking for matching braces, other syntax (or TMs), supports recursion 
 behind the scenes, and is used in DFS on a graph.
@@ -73,7 +73,7 @@ what comes out when you pop.
 | Search      | O(n)        | O(n)        | scan all elements if not on top
 
 
-### Queues
+### QUEUES
 #### Useful for: 
 Used to model a real-world queue like standing in line, a sequence of elements, web server 
 manager for first come, first serve, or BFS graph traversal.
@@ -93,7 +93,7 @@ arrays (static) might not be big enough.
 | Remove      | O(n)        | O(n)        |
 
 
-### Hash Map
+### HASH MAP
 #### Useful for: 
 Helpful for tracking item frequencies, if large files have equal contents (without opening files), 
 
