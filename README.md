@@ -4,7 +4,7 @@ Data Structures, Sorting Algorithms, Runtimes, Interview Questions and overall p
 ---
 ## Data Structures
 
-### 📌 Binary Search Tree
+### BINARY SEARCH TREE
 #### Useful for: 
 Sorting data and everything, including rebalancing, can be done in O(log n).
 #### Notes: 
