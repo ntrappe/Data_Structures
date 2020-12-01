@@ -9,7 +9,7 @@ using namespace std;
 
 /**
  * Definition for a singly linked list node.
- **/
+ */
 struct ListNode {
     char val;
     ListNode * next;
@@ -19,6 +19,14 @@ struct ListNode {
     ListNode(char x) : val(x), next(nullptr) {}
 };
 
+/**
+ * Checks if a given word is a palindrome (read the same way forwards or backwards)
+ * Input: pointer to a pointer to a ListNode (head of Linked List)
+ *        each node is a character so from head to tail, it forms a word
+ * Uses a stack to first go from head to tail, adding each character to the stack
+ * then goes from head to tail but this times pops from the stack and if the top
+ * differs from current nodes in list, not a match.
+ */
 bool palindrome(ListNode** head) {
     ListNode* curr = *head;
     stack<char> st;
@@ -47,6 +55,11 @@ bool palindrome(ListNode** head) {
     return true;
 }
 
+/**
+ * Insert Tail
+ * Inserts a new node into the end of the Linked List
+ * Input: head of Linked list and data to insert
+ */
 void insert_tail(ListNode** head, int data) {
     ListNode * ref = new ListNode(data);        // will have next = nullptr
     ListNode * prev = *head;
@@ -65,6 +78,11 @@ void insert_tail(ListNode** head, int data) {
     return;
 }
 
+/**
+ * Insert Head
+ * Inserts a new node at the head of the Linked List
+ * Input: head of Linked list and data to insert
+ */
 void insert_head(ListNode** head, int data) {
     ListNode * ref = new ListNode(data);        // will have next = nullptr
     ListNode * prev = *head;
@@ -80,7 +98,44 @@ void insert_head(ListNode** head, int data) {
     return;
 }
 
-void reverse(ListNode** head) {
+/**
+ * Remove 
+ * Removes a node from the Linked List by deleting it and rearranging pointers
+ * Input: head of Linked list and data to remove
+ */
+void remove(ListNode** head, int data) {
+    ListNode* curr = *head;
+    ListNode* prev = nullptr;
+
+    // if deleting from head
+    if(curr && curr->val == data) {
+        head = &(curr->next);           // set head to next item
+        delete curr;
+        return;
+    }
+
+    // search for node to remove
+    while(curr && curr->val != data) {
+        prev = curr;
+        curr = curr->next;
+    }
+
+    if(!curr)       // didn't find (went thru list)
+        return;
+
+    // got a match so unlink it
+    prev->next = curr->next;
+    delete curr;
+}
+
+/**
+ * Reverse
+ * Reverses a linked list so what was the head is now the tail and we now have a pointer
+ * to the new head which was the tail
+ *      ex. --> (1) --> (2) is now --> (2) --> (1)
+ * Input: head of Linked list
+ */
+void reverse(ListNode** head) {         // could also do ListNode* &head then do normal pointer
     ListNode* prev = nullptr;
     ListNode* curr = *head;
     ListNode* next = nullptr;
@@ -90,14 +145,11 @@ void reverse(ListNode** head) {
 
     while(curr) {
         next = curr->next;          // store next node
-        cout << "next (" << next->val << ")\n";
         curr->next = prev;          // change next node pointer (reverse ptr)
         prev = curr;
-        cout << "prev now (" << prev->val << ")\n";
         curr = next;
-        cout << "curr now (" << curr->val << ")\n";
     }
-    head = &prev;
+    *head = prev;
 }
 
 int main() {
