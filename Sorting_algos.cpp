@@ -7,6 +7,12 @@ using namespace std;
 
 const int SZ_ARR = 100;
 
+/**
+ * Insertion Sort
+ * Best case: O(n), Ave/Worst case: O(n^2), Space: O(1)
+ * Starting from left to right, select current number and if it's
+ * smaller than previous ones, keep moving it over to the left 
+ */ 
 int* insertion_sort(int arr[]) {
     int curr_idx;
 
@@ -25,10 +31,14 @@ int* insertion_sort(int arr[]) {
     return arr;
 }
 
+/**
+ * Selection Sort
+ * Best case: O(n^2), Ave/Worst case: O(n^2), Space: O(1)
+ * Find the smallest number and move left, then find the next
+ * smallest and move left, and so on.
+ */ 
 int* selection_sort(int arr[]) {
-    int sorted[SZ_ARR];
-
-    for(int i = 0; i < SZ_ARR; i++) {
+   for(int i = 0; i < SZ_ARR; i++) {
         // traverse original array 
         int min_idx = i;
         for(int j = i + 1; j < SZ_ARR; j++) {
@@ -43,6 +53,11 @@ int* selection_sort(int arr[]) {
     return arr;
 }
 
+/**
+ * Helper function for Merge Sort
+ * Taking 2 lists (first half, second half) we will compare their
+ * elements and insert them into a new list
+ */
 void merge(int arr[], int left, int middle, int right) {
     int num_first_list = middle - left + 1;     // number of elements in first list
     int num_second_list = right - middle;       // number of elements in second list
@@ -89,7 +104,9 @@ void merge(int arr[], int left, int middle, int right) {
     }
 }
 
-/* Keeps splitting up the array into halves until we get individual chunks */
+/** Helper function for Merge Sort
+ * Keeps splitting up the array into halves until we get individual chunks
+ */
 void merge_recurse(int arr[], int left, int right) {
     if(left >= right)
         return;                             // stops when we have divided into individual pieces
@@ -99,6 +116,12 @@ void merge_recurse(int arr[], int left, int right) {
     merge(arr, left, middle, right);
 }
 
+/**
+ * Merge Sort
+ * Best case: O(nlogn), Ave/Worst case: O(nlogn), Space: O(n)
+ * Break and array into individual chunks then slowly build back up the chunks
+ * by comparing pairs then pairs of pairs and so on until back to an array
+ */ 
 int* merge_sort(int arr[]) {
     int left = 0;
     int right = SZ_ARR - 1;
@@ -125,10 +148,10 @@ int main() {
         arr[i] = rand() % 10;
     }
 
-    //int * arr2 = insertion_sort(arr);
+    // HOW TO TEST EACH SORTING METHOD
     //print(insertion_sort(arr));
     //print(selection_sort(arr));
-    print(merge_sort(arr));
+    //print(merge_sort(arr));
 
     return 0;
 }
