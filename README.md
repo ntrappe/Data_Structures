@@ -2,16 +2,6 @@
 Data Structures, Sorting Algorithms, Runtimes, Interview Questions and overall prep for coding interviews.
 
 ---
-## Sorting Algorithms
-### Insertion Sort
-#### Useful for: 
-...
-#### Time Complexity:
-| Best        | Average     | Worst       | Space       | 
-| ----------- | ----------- | ----------- | ----------- |
-| O(n)        | O(n^2)      | O(n^2)      | O(1)      | 
-
----
 ## Data Structures
 
 ### Binary Search Tree
@@ -123,6 +113,49 @@ Keys are immutable.
 | Lookup      | O(1)        | O(n)        | lots of hash collisions
 | Remove      | O(1)        | O(n)        | 
 | Insert      | O(1)        | O(n)        | 
+
+---
+## Sorting Algorithms
+
+### Insertion Sort
+#### Useful for: 
+...
+#### Time Complexity:
+| Best        | Average     | Worst       | Space       | 
+| ----------- | ----------- | ----------- | ----------- |
+| O(n)        | O(n^2)      | O(n^2)      | O(1)        | 
+
+### Selection Sort
+#### Useful for: 
+...
+#### Time Complexity:
+| Best        | Average     | Worst       | Space       | 
+| ----------- | ----------- | ----------- | ----------- |
+| O(n^2)      | O(n^2)      | O(n^2)      | O(1)        | 
+
+### Merge Sort
+#### Useful for: 
+Ideal for combining lists.
+#### Time Complexity:
+| Best        | Average     | Worst       | Space       | 
+| ----------- | ----------- | ----------- | ----------- |
+| O(nlogn)    | O(nlogn)    | O(nlogn)    | O(n)        | 
+
+### Quick Sort
+#### Useful for: 
+...
+#### Time Complexity:
+| Best        | Average     | Worst       | Space       | 
+| ----------- | ----------- | ----------- | ----------- |
+| O(nlogn)    | O(nlogn)    | O(n^2)      | O(logn)     | 
+
+### Heap Sort
+#### Useful for: 
+Can be chosen over quick sort because, in the case of a partially sorted array, it's worst case will always be O(nlogn) not O(n^2).
+#### Time Complexity:
+| Best        | Average     | Worst       | Space       | 
+| ----------- | ----------- | ----------- | ----------- |
+| O(n)        | O(nlogn)    | O(nlogn)    | O(1)        | 
 
 ---
 ## Other Notes
