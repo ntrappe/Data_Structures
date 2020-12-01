@@ -28,7 +28,7 @@ Generally use unique values (don't want duplicates).
 | Search      | O(log n)    | O(n)        |
 #
 
-## Arrays
+### Arrays
 #### Useful for: 
 Storing and accessing sequential data, temporarily storing, as an IO buffer
 (when reading from a file), lookup table, and hack for multiple return values.
