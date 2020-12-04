@@ -61,12 +61,41 @@ int length_LongestSubstring(string str) {
 }
 
 /**
+ * SLIDING WINDOW: Length of longest substring without repeating characters
+ * Time complexity: O(n)
+ */
+int length_LongestSubstring_SW(string str) {
+    int length = 0;
+    int i = 0;
+    int j = 0;
+    set<char> char_table;
+
+    while(i < str.length() && j < str.length()) {
+        char letter = str.at(j);
+        // if empty or don't have char then add it
+        if(char_table.find(letter) == char_table.end()) {
+            char_table.insert(letter);
+            j++;
+            length = max(length, j - i);
+        // current char is a match to remove first instance of it aka first in set
+        } else {
+            char_table.erase(str.at(i++));
+        }
+    }
+    return length;
+}
+
+/**
  * OPTIMIZED: Length of longest substring without repeating characters
  * Time complexity: O(n)
  */
+int length_LongestSubstring_OP(string str) {
+
+}
 
 
 int main() {
-    cout << length_LongestSubstring("catiscat");
+    //cout << length_LongestSubstring("catiscat");
+    cout << length_LongestSubstring_SW("catsst");
     return EXIT_SUCCESS;
 }
