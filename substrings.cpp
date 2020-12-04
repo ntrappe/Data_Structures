@@ -25,36 +25,34 @@ using namespace std;
  */
 bool is_unique(string str, int left, int right) {
     set<char> char_table;                   // keeps track of all chars we've used in this string
+
     for(int i = left; i < right; i++) {
-        // if nothing in set, add this char
-        if(char_table.empty()) {
-            char_table.insert(str[i]);
-        // otherwise check if we already have this char, if so then it's repeating so return false
-        } else if(char_table.find(str[i]) != char_table.end()) {
+        char letter = str.at(i);            // current letter of substring
+
+        // if can't find this letter/empty, add it
+        if(char_table.find(letter) == char_table.end()) {
+            char_table.insert(letter);
+        } else {                // found it so got a repeat
             return false;
-        } else {
-            char_table.insert(str[i]);
         }
     }
     return true;
 }
+
 /**
  * BRUTE FORCE: Length of longest substring without repeating characters
  * Time complexity: O(n^3)
  */
 int length_LongestSubstring(string str) {
     int length = 0;                         // length of longest substring
+   
     for(int i = 0; i < str.length(); i++) {
-        // look at substrings from position i to current pos of j (possible substrings from i)
+        // substring from position i to whatever j is
         for(int j = i + 1; j <= str.length(); j++) {
+            /* if this substring has no repeating chars, compare its length 
+             * to current to see if we should update it */
             if(is_unique(str, i, j)) {
-                cout << "unique: " << str.substr(i,j) << endl;
-                if( (str.substr(i,j)).length() > length ) {
-                    length = (str.substr(i,j)).length();
-                    cout << "new length " << length << endl;
-                }
-            } else {
-                cout << "not unique: " << str.substr(i,j) << endl;
+                length = max(length, j - i);
             }
         }
     }
@@ -69,6 +67,6 @@ int length_LongestSubstring(string str) {
 
 
 int main() {
-    length_LongestSubstring("catca");
+    cout << length_LongestSubstring("catiscat");
     return EXIT_SUCCESS;
 }
