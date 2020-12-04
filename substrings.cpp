@@ -2,7 +2,7 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 #include <iostream>
-#include <vector>
+#include <unordered_map>
 #include <stack>
 #include <set>
 
@@ -14,10 +14,50 @@ using namespace std;
 
 
 /**
- * Length of longest substring where the characters in that substring appear an EVEN number of times
+ * Helper method for longest even substring
+ */
+bool is_even(string str, int left, int right) {
+    unordered_map<char, int> u_map;              // <digit, freq>
+    int flags = 0;
+
+    for(int i = left; i < right; i++) {
+        auto it = u_map.find(str[i]);
+        if(it == u_map.end()) {
+            u_map.insert(make_pair(str[i], 1));
+            flags += 1;              // rn it's odd
+        } else {
+            if(it->second % 2 == 0)  // if have even fuck we're making it odd now
+                flags += 1;
+            else
+                flags -= 1;      
+        }
+    }
+
+    if(flags == 0)
+        return true;
+    return false;
+}
+
+/**
+ * BRUTE FORCE: Length of longest substring where the characters in that substring 
+ * appears an EVEN number of times
  * ex. 324425 --> 44 or 2442 because characters repeat twice = length of 4
  * ex. 233015150 --> 33 or or 1515 or 015150 because all charcters repeat twice = length of 6
+ * Time complexity: O(n^3)
  */
+int length_EvenLongestSubstring(string str) {
+    int length = 0;
+
+    for(int i = 0; i < str.length(); i++) {
+        for(int j = i + 1; j <= str.length(); j++) {
+            if(is_even(str, i, j)) {
+                length = max(length, (j-i));
+            }
+        }
+    }
+    return length;
+}
+
 
 /**
  * Helper Method for Length of longest substring
@@ -85,17 +125,12 @@ int length_LongestSubstring_SW(string str) {
     return length;
 }
 
-/**
- * OPTIMIZED: Length of longest substring without repeating characters
- * Time complexity: O(n)
- */
-int length_LongestSubstring_OP(string str) {
-
-}
 
 
 int main() {
     //cout << length_LongestSubstring("catiscat");
-    cout << length_LongestSubstring_SW("catsst");
+    //cout << length_LongestSubstring_SW("catsst");
+    cout << length_EvenLongestSubstring("24241") << endl;
+    cout << length_EvenLongestSubstring("1366667") << endl;
     return EXIT_SUCCESS;
 }
