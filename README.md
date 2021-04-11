@@ -1,6 +1,5 @@
 # Interview Prep
-Data Structures, Sorting Algorithms, Runtimes, Interview Questions and overall prep for coding interviews.
-
+_For interview questions and what to ask, check out this [doc](InterviewQuestions.md). Otherwise, keep reading for basic data structures, sorting algorithms, and time complexities. I'll add a section on technical tips too later._
 ---
 ## Data Structures
 
