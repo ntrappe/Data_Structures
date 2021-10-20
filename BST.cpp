@@ -81,6 +81,7 @@ void level_order(TreeNode* root) {
 
 /**
  * In order traversal: left, root, right
+ * DFS, O(n)
  **/
 void in_order(TreeNode* root) {
     if(!root)
@@ -92,6 +93,7 @@ void in_order(TreeNode* root) {
 
 /**
  * Post order traversal: left, right, root
+ * DFS, O(n)
  **/
 void post_order(TreeNode* root) {
     if(!root)
@@ -103,6 +105,7 @@ void post_order(TreeNode* root) {
 
 /**
  * Pre order traversal: root, left, right
+ * DFS, O(n)
  **/
 void pre_order(TreeNode* root) {
     if(!root)
