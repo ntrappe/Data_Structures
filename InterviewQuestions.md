@@ -28,6 +28,7 @@
 7. What do you love about this role/Company X?
 8. What skills have you found to be important for your role?
 9. What what you've heard and seen thus far, can you tell me what my weaknesses or areas of improvment are?
+10. What is something you would improve upon in your role or work?
 
 ### Unofficial (Casual) Questions To Ask Interviewer
 1. How do you deal with technical debt?
@@ -40,3 +41,5 @@
 8. Do they switch tools often/port their work?
 9. Does Company X seem to have a focus on diversity? (E.g. are employees graded on this like Google, Microsoft?)
 10. What does their day look like?
+11. 10. Are there open lines of communication between SWEs and designers or is it more modulary (i.e. stay in your lane)
+
