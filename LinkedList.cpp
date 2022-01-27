@@ -152,11 +152,85 @@ void reverse(ListNode** head) {         // could also do ListNode* &head then do
     *head = prev;
 }
 
+void printLinkedList (ListNode ** head) {
+    ListNode * curr = *head;
+
+    while (curr) {
+        cout << "(" << curr->val << ") --> ";
+        curr = curr->next;
+    }
+    cout << "X\n";
+}
+
+// (1) (2) (3) (4)
+// prev: null, curr: (1), next: (2)
+// prev: (1), curr: (2), next: (3)
+// prev: (2), curr: (3), next: null
+// prev: (3), curr: null, next: null
+void reverseSubroutine (ListNode ** head, ListNode ** tail) {
+    // (prev) -> (curr) -> (next)
+    ListNode * prev = nullptr; 
+    ListNode * curr = *head;
+    ListNode * next = nullptr;
+    
+    // check if invalid pointers
+    if (!head || !tail)
+        return;
+
+    if (*head == nullptr || *tail == nullptr)
+        return;
+
+    while(prev != *tail) {
+        next = curr->next;          // store next node
+        curr->next = prev;          // change next node pointer (reverse ptr)
+        prev = curr;
+        // cout << "curr (" << curr->val << ") and head (" << (*head)->val << ") and tail (" << (*tail)->val << ")\n";
+        curr = next;
+    }
+    // update tail to point to the head (before reversing) AND  
+    // update new head (what used to be the tail)
+    *tail = *head;
+    *head = prev;
+    // *tail = *head;
+}
+
+/**
+ * Update 2022: Reverse a linked list in groups of k
+ *
+ */
+void reverseListK (ListNode ** head, int k) {
+    ListNode * itr = *head;
+    ListNode * prevGroupTail = nullptr;     // [(smth) (prevGroupTail)] - [current group]
+    ListNode * groupHead = nullptr;
+    ListNode * groupTail = nullptr;
+
+    while (itr) {
+        groupHead = itr;
+        int i = 0;
+        while (i++ < k && itr) {
+            itr = itr->next;
+            if (i == (k - 1))
+                groupTail = itr;
+        }
+        
+        cout << "subgroup [(" << groupHead->val << ") ... (" << groupTail->val << ")]\n";
+        reverseSubroutine (&groupHead, &groupTail);
+        cout << "after reverse head (" << groupHead->val << ") and tail (" << groupTail->val << ")\n";
+        if (!prevGroupTail) {
+            cout << "no previous group tail so set head to (" << groupHead->val << ")\n\n";
+            *head = groupHead;
+        } else {
+            cout << "connect (" << prevGroupTail->val << ") to (" << groupHead->val << ")\n\n";
+            prevGroupTail->next = groupHead;
+        } 
+        prevGroupTail = groupTail;
+    }
+}
+
+
+
 int main() {
     ListNode* head = nullptr;
-    char str[] = "abadaba";
-    int sz = sizeof(str)/sizeof(str[0]);
-    cout << sizeof(str) << endl;
 /*
     insert_tail(&head, 'a');
     insert_tail(&head, 'b');
@@ -166,19 +240,33 @@ int main() {
     insert_tail(&head, 'b');
     insert_tail(&head, 'a');*/
 
-    insert_tail(&head, 'r');
-    insert_tail(&head, 'a');
-    insert_tail(&head, 'd');
-    insert_tail(&head, 'b');
-    insert_tail(&head, 'x');
+    // insert_tail(&head, 'r');
+    // insert_tail(&head, 'a');
+    // insert_tail(&head, 'd');
+    // insert_tail(&head, 'b');
+    // insert_tail(&head, 'y');
 
-    //cout << head->val << endl;
-    //cout << "is palindrome? " << palindrome(&head) << endl;
-    reverse(&head);
-    cout << head->val << endl;
-    //cout << head->next->val << endl;
-    //cout << head->next->next->val << endl;
+    ListNode * a = new ListNode ('a');
+    ListNode * b = new ListNode ('b');
+    ListNode * c = new ListNode ('c');
+    ListNode * d = new ListNode ('d');
+    ListNode * e = new ListNode ('e');
+    //ListNode * f = new ListNode ('f');
+    a->next = b;
+    b->next = c;
+    c->next = d;
+    d->next = e;
+    //e->next = f;
+ 
+    // test reverswe function
+    // reverse(&head);
+    // cout << head->val << endl;
 
+    // test reverse function
+    //printLinkedList (&a);
+    reverseListK (&a, 3);
+    //reverseSubroutine (&a, &e);
+    printLinkedList (&a);
 
     return 0;
 }
