@@ -41,5 +41,5 @@
 8. Do they switch tools often/port their work?
 9. Does Company X seem to have a focus on diversity? (E.g. are employees graded on this like Google, Microsoft?)
 10. What does their day look like?
-11. 10. Are there open lines of communication between SWEs and designers or is it more modulary (i.e. stay in your lane)
+11. Are there open lines of communication between SWEs and designers or is it more modulary (i.e. stay in your lane)
 
