@@ -7,9 +7,10 @@
 
 using namespace std;
 
-double DELTA = 0.1;
+double DELTA = 0.001;
 double TRI_SIDE = 5.0;
 double TRI_HEIGHT = 4.330127019;
+double TRI_AREA = 10.82532;
 
 /*------------------------------------------------------
  % Routine Name: getAreaTriangle
@@ -63,7 +64,6 @@ double getTrapTop(double triHeight, double traHeight) {
   double heightMiniTri = triHeight - traHeight;
   double baseMiniTri = (heightMiniTri / (sqrt (3))) * 2;
 
-  // cout << "mini triangle height (" << heightMiniTri << ") and base (" << baseMiniTri << ")\n";
   return baseMiniTri;
 }
 
@@ -87,22 +87,23 @@ double getTrapTop(double triHeight, double traHeight) {
  % height             Ref to height of trapezoid (calc)
  % top                Ref to top of trapezoid (calc)
  -------------------------------------------------------*/
-int trapezoidAreaReverse(double bottom, double triHeight, double area,
+int trapezoidAreaReverse(double bottom, double triHeight, double portion,
                          double &height, double &top) {
-  if (triHeight <= 0 || area <= 0 || bottom <= 0) {
+  if (triHeight <= 0 || portion < 0 || portion > 1 || bottom <= 0) {
     return EXIT_FAILURE;
   }
 
   height = 0;
   top = 0;
 
+  double trapezoidArea = portion * TRI_AREA;
   double tempArea = 0;	// calc approx areas for diff traps
 
-  while (tempArea < area) {
+  while (tempArea < trapezoidArea) {
     height += DELTA; 
     top = getTrapTop(triHeight, height);
     tempArea = getAreaTrapezoid(top, bottom, height);
-    //printf("Trying height %.2f, got top %.2f, area is %.2f and goal is %.2f\n", height, top, tempArea, area); 
+    //printf("Trying height %.2f, got top %.2f, area is %.2f and goal is %.2f\n", height, top, tempArea, trapezoidArea); 
   }
 
   return EXIT_SUCCESS;
@@ -186,56 +187,54 @@ int main() {
  
   // Eng 1 Calculations
   printf("--- SEGMENT 1: Eng1 ---\n");
-  valid = trapezoidAreaReverse(segmentBase, triangleHeight, triangleArea * Eng1,
-                               segmentHeight, segmentTop);
+  valid = trapezoidAreaReverse(segmentBase, triangleHeight, Eng1, segmentHeight, segmentTop);
   if (valid == EXIT_FAILURE) {
     cerr << "Invalid area to trapezoid calculation" << endl;
     return EXIT_FAILURE;
   }
-  printf("Eng1:\t\t Area (%.2f), Base (%.2f), Top (%.2f), Height (%.2f)\n", 
-          triangleArea * Eng1, segmentBase, segmentTop, segmentHeight); 
+  printf("Eng1:\t\t Base (%.2f), Top (%.2f), Height (%.2f)\n", segmentBase, 
+         segmentTop, segmentHeight); 
   womenEng1Part = divideTrapezoid(segmentBase, segmentHeight, womenEng1);
   segmentBase = segmentTop;
   triangleHeight -= segmentHeight;
 
   // Eng 2 Calculations
   printf("--- SEGMENT 2: Eng2 ---\n");
-  valid = trapezoidAreaReverse(segmentBase, triangleHeight, triangleArea * Eng2,
-                               segmentHeight, segmentTop);
+  valid = trapezoidAreaReverse(segmentBase, triangleHeight, Eng2, segmentHeight, segmentTop);
   if (valid == EXIT_FAILURE) {
     cerr << "Invalid area to trapezoid calculation" << endl;
     return EXIT_FAILURE;
   }
-  printf("Eng2:\t\t Area (%.2f), Base (%.2f), Top (%.2f), Height (%.2f)\n", 
-          triangleArea * Eng2, segmentBase, segmentTop, segmentHeight); 
+  printf("Eng2:\t\t Base (%.2f), Top (%.2f), Height (%.2f)\n", segmentBase, 
+         segmentTop, segmentHeight); 
   womenEng2Part = divideTrapezoid(segmentBase, segmentHeight, womenEng2);
   segmentBase = segmentTop;
   triangleHeight -= segmentHeight;
 
   // Senior Calculations
   printf("--- SEGMENT 3: Senior ---\n");
-  valid = trapezoidAreaReverse(segmentBase, triangleHeight, triangleArea * Senior,
-                               segmentHeight, segmentTop);
+  valid = trapezoidAreaReverse(segmentBase, triangleHeight, Senior, segmentHeight, 
+          segmentTop);
   if (valid == EXIT_FAILURE) {
     cerr << "Invalid area to trapezoid calculation" << endl;
     return EXIT_FAILURE;
   }
-  printf("Senior:\t\t Area (%.2f), Base (%.2f), Top (%.2f), Height (%.2f)\n", 
-          triangleArea * Senior, segmentBase, segmentTop, segmentHeight); 
+  printf("Senior:\t\t Base (%.2f), Top (%.2f), Height (%.2f)\n", segmentBase, 
+         segmentTop, segmentHeight); 
   womenSeniorPart = divideTrapezoid(segmentBase, segmentHeight, womenSenior);
   segmentBase = segmentTop;
   triangleHeight -= segmentHeight;
 
   // Principal Calculations
   printf("--- SEGMENT 4: Principal ---\n");
-  valid = trapezoidAreaReverse(segmentBase, triangleHeight, triangleArea * Principal,
-                               segmentHeight, segmentTop);
+  valid = trapezoidAreaReverse(segmentBase, triangleHeight, Principal, segmentHeight, 
+          segmentTop);
   if (valid == EXIT_FAILURE) {
     cerr << "Invalid area to trapezoid calculation" << endl;
     return EXIT_FAILURE;
   }
-  printf("Senior:\t\t Area (%.2f), Base (%.2f), Top (%.2f), Height (%.2f)\n\n", 
-          triangleArea * Principal, segmentBase, segmentTop, segmentHeight); 
+  printf("Senior:\t\t Base (%.2f), Top (%.2f), Height (%.2f)\n\n", segmentBase, 
+         segmentTop, segmentHeight); 
   segmentBase = segmentTop;
   triangleHeight -= segmentHeight;
 
@@ -248,6 +247,5 @@ int main() {
          womenEng1, womenEng1Part, womenEng2, womenEng2Part, womenSenior, 
          womenSeniorPart, womenPrincipal, womenPartner);
   
-
   return EXIT_SUCCESS;
 }
